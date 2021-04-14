@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
     <title>Document</title>
 </head>
@@ -34,9 +35,10 @@
 
             <!-- Begin: Search button -->
             <div class="search-btn">
-                <i class="ti-search">
-
-                </i>
+                <i class="search-icon ti-search"></i>
+            </div>
+            <div id="mobile-menu" class="mobile-menu-btn">
+                <i class="menu-icon ti-menu"></i>
             </div>
             <!-- End: Search button -->
         </div>
@@ -65,15 +67,15 @@
                     consequat.
                 </p>
                 <div class="row member-list">
-                    <div class="col col-third text-center">
+                    <div class="col col-third s-col-full mt-16 text-center">
                         <p class="member-name">Name</p>
                         <img src="./assets/image/bandmember/mem1.jpg" alt="name" class="member-img">
                     </div>
-                    <div class="col col-third text-center">
+                    <div class="col col-third s-col-full mt-16 text-center">
                         <p class="member-name">Name</p>
                         <img src="./assets/image/bandmember/mem1.jpg" alt="name" class="member-img">
                     </div>
-                    <div class="col col-third text-center">
+                    <div class="col col-third s-col-full mt-16 text-center">
                         <p class="member-name">Name</p>
                         <img src="./assets/image/bandmember/mem1.jpg" alt="name" class="member-img">
                     </div>
@@ -92,7 +94,7 @@
                     </ul>
 
                     <div class="places-list row">
-                        <div class="col-third col">
+                        <div class="col-third col s-col-full mt-16">
                             <img src="./assets/image/place/newyork.jpg" alt="" class="place-img">
                             <div class="place-body">
                                 <h3 class="place-heading">New York</h3>
@@ -103,7 +105,7 @@
                             </div>
                         </div>
 
-                        <div class="col-third col">
+                        <div class="col-third col s-col-full mt-16">
                             <img src="./assets/image/place/paris.jpg" alt="" class="place-img">
                             <div class="place-body">
                                 <h3 class="place-heading">Paris</h3>
@@ -114,7 +116,7 @@
                             </div>
                         </div>
 
-                        <div class="col-third col">
+                        <div class="col-third col s-col-full mt-16">
                             <img src="./assets/image/place/newyork.jpg" alt="" class="place-img">
                             <div class="place-body">
                                 <h3 class="place-heading">San Francisco</h3>
@@ -176,6 +178,35 @@
             <p class="copyright">Powered by <a href="">w3.css</a></p>
         </div>
     </div>
+
+    <script>
+        var header = document.getElementById('header')
+        var mobileMenu = document.getElementById('mobile-menu')
+        var headerHeight = header.clientHeight
+
+        mobileMenu.onclick = function () {
+            var isClosed = header.clientHeight == headerHeight
+            if (isClosed) {
+                header.style.height = 'auto'
+            } else {
+                header.style.height = null
+            }
+        }
+
+        var menuItems = document.querySelectorAll('#nav li a[href*="#"]')
+        for (let index = 0; index < menuItems.length; index++) {
+            var menuItem = menuItems[index]
+            menuItem.onclick = function () {
+                var isParentMenu = this.nextElementSibling && this.nextElementSibling.classList.contains('subnav')
+                if (isParentMenu) {
+                    event.preventDefault()
+                } else {
+                    header.style.height = null
+                }
+            }
+
+        }
+    </script>
 </body>
 
 </html>
